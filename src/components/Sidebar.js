@@ -1,7 +1,6 @@
 import React from 'react';
-
-// We'll add the specific CSS for the sidebar in our main App.css file
-// so we don't need to import a separate stylesheet here.
+import { FaHome, FaCalendarAlt, FaCheckCircle, FaBell, FaCog } from 'react-icons/fa';
+import '../App.css';
 
 const Sidebar = () => {
   return (
@@ -11,32 +10,33 @@ const Sidebar = () => {
       </div>
       <ul className="nav-list">
         <li className="nav-item active">
-          {/* In a real app, you would use React Router's <Link> component here */}
           <a href="#">
-            🏠&nbsp; Home
+            <FaHome style={{ marginRight: '8px' }} />
+            Home
           </a>
         </li>
         <li className="nav-item">
           <a href="#">
-            📅&nbsp; Scheduler
+            <FaCalendarAlt style={{ marginRight: '8px' }} />
+            Scheduler
           </a>
         </li>
-
         <li className="nav-item">
           <a href="#">
-            ✅&nbsp; Follow Ups
+            <FaCheckCircle style={{ marginRight: '8px' }} />
+            Follow Ups
           </a>
         </li>
-
         <li className="nav-item">
           <a href="#">
-            🔔&nbsp; Reminders
+            <FaBell style={{ marginRight: '8px' }} />
+            Reminders
           </a>
         </li>
-
         <li className="nav-item">
           <a href="#">
-            ⚙️&nbsp; Settings
+            <FaCog style={{ marginRight: '8px' }} />
+            Settings
           </a>
         </li>
       </ul>
