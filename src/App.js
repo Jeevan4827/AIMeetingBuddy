@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import Sidebar from './components/Sidebar';
-import InstantScheduleCard from './components/InstantScheduleCard';
-import KeyContextCard from './components/KeyContextCard';
-import AgendaCard from './components/AgendaCard';
-import FollowUpCard from './components/FollowUpCard';
+import HomePage from './pages/HomePage';
+import SchedulerPage from './pages/SchedulerPage'; 
 
 function App() {
   const [scheduleData, setScheduleData] = useState(null);
@@ -15,6 +14,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Data fetching remains the same
     Promise.all([
       fetch('/schedule.json').then(res => res.json()),
       fetch('/context.json').then(res => res.json()),
@@ -27,10 +27,6 @@ function App() {
       setAgendaData(agenda);
       setFollowUpsData(followUps);
       setLoading(false);
-    })
-    .catch(error => {
-      console.error("Failed to fetch data:", error);
-      setLoading(false);
     });
   }, []);
 
@@ -38,19 +34,26 @@ function App() {
     <div className="app-layout">
       <Sidebar />
       <div className="main-content">
-        <header className="app-header">
-          <h2>Meeting: Zoho (Chennai) & Distributor (Germany)</h2>
-        </header>
-
         {loading ? (
-          <div className="loading-screen">Loading Meeting Data...</div>
+          <div className="loading-screen">Loading App Data...</div>
         ) : (
-          <main className="dashboard-grid">
-            <InstantScheduleCard scheduleData={scheduleData} />
-            <KeyContextCard contextData={contextData} />
-            <AgendaCard agendaData={agendaData} />
-            <FollowUpCard followUpsData={followUpsData} />
-          </main>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <HomePage 
+                  scheduleData={scheduleData}
+                  contextData={contextData}
+                  agendaData={agendaData}
+                  followUpsData={followUpsData}
+                />
+              } 
+            />
+            <Route 
+              path="/scheduler" 
+              element={<SchedulerPage scheduleData={scheduleData} contextData={contextData} />} 
+            />
+          </Routes>
         )}
       </div>
     </div>

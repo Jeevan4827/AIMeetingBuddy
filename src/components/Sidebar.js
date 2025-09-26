@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { FaHome, FaCalendarAlt, FaCheckCircle, FaBell, FaCog } from 'react-icons/fa';
 import '../App.css';
 
@@ -9,33 +10,33 @@ const Sidebar = () => {
         <h3>AI Meeting Buddy</h3>
       </div>
       <ul className="nav-list">
-        <li className="nav-item active">
-          <a href="#">
-            <FaHome style={{ marginRight: '8px' }} />
+        <li className="nav-item">
+          <NavLink to="/" end>
+            <FaHome />
             Home
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a href="#">
-            <FaCalendarAlt style={{ marginRight: '8px' }} />
+          <NavLink to="/scheduler">
+            <FaCalendarAlt />
             Scheduler
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
           <a href="#">
-            <FaCheckCircle style={{ marginRight: '8px' }} />
+            <FaCheckCircle />
             Follow Ups
           </a>
         </li>
         <li className="nav-item">
           <a href="#">
-            <FaBell style={{ marginRight: '8px' }} />
+            <FaBell />
             Reminders
           </a>
         </li>
         <li className="nav-item">
           <a href="#">
-            <FaCog style={{ marginRight: '8px' }} />
+            <FaCog />
             Settings
           </a>
         </li>

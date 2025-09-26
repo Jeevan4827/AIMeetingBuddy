@@ -55,7 +55,8 @@ body {
 }
 
 .nav-item a {
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 0.8rem 1rem;
   border-radius: 8px;
   text-decoration: none;
@@ -68,11 +69,15 @@ body {
   background-color: #f1f3f4;
 }
 
-.nav-item.active a {
+.nav-item a.active {
   background-color: var(--status-pending-bg);
   color: var(--primary-color);
 }
 
+.nav-item a svg {
+  margin-right: 16px;
+  vertical-align: middle; 
+}
 
 /* MAIN CONTENT AREA */
 .main-content {
@@ -174,7 +179,7 @@ body {
 .schedule-info .time { font-size: 2.25rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0; }
 .schedule-info .date { font-size: 1.25rem; color: var(--text-secondary); flex-grow: 1; }
 .button-primary { background-color: var(--primary-color); color: white; border: none; border-radius: 8px; padding: 12px 24px; font-size: 1rem; font-weight: 500; cursor: pointer; width: 100%; margin-top: 1rem; transition: background-color 0.2s ease, transform 0.2s ease; }
-.button-primary:hover { background-color: #185abc; transform: scale(1.02); }
+.button-primary:hover { background-color: #18bc44; transform: scale(1.02); }
 
 /* --- AGENDA CARD --- */
 .agenda-list { padding-left: 20px; margin: 0; color: var(--text-secondary); }
@@ -189,3 +194,57 @@ body {
 .status.done { background-color: var(--status-done-bg); color: var(--status-done-text); }
 .status.pending { background-color: var(--status-pending-bg); color: var(--status-pending-text); }
 .status.overdue { background-color: var(--status-overdue-bg); color: var(--status-overdue-text); }
+
+.scheduler-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.scheduler-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.scheduler-form label {
+  display: block;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.scheduler-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box; /* Important for padding and width */
+}
+
+.scheduler-form .button-primary {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.scheduler-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  background-color: white; /* Ensure background is white */
+}
+
+.scheduler-form input:read-only {
+  background-color: #f0f0f0; /* A light grey background */
+  cursor: not-allowed;
+  opacity: 0.8;
+  color: var(--text-secondary);
+}
