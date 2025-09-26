@@ -83,6 +83,7 @@ body {
 .main-content {
   padding: 2rem 3rem;
   overflow-y: auto; /* Allow content to scroll if it gets too long */
+  overflow-x: hidden;
 }
 
 .app-header {
@@ -147,6 +148,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 350px; 
 }
 
 .card:hover {
@@ -164,10 +166,12 @@ body {
   font-size: 1.1rem;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .card-content {
   flex-grow: 1;
+  overflow-y: auto; 
 }
 .card-content h4 { margin-top: 0; font-size: 1.1rem; color: var(--text-primary); }
 .card-content p { color: var(--text-secondary); line-height: 1.6; }
@@ -179,7 +183,7 @@ body {
 .schedule-info .time { font-size: 2.25rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0; }
 .schedule-info .date { font-size: 1.25rem; color: var(--text-secondary); flex-grow: 1; }
 .button-primary { background-color: var(--primary-color); color: white; border: none; border-radius: 8px; padding: 12px 24px; font-size: 1rem; font-weight: 500; cursor: pointer; width: 100%; margin-top: 1rem; transition: background-color 0.2s ease, transform 0.2s ease; }
-.button-primary:hover { background-color: #18bc44; transform: scale(1.02); }
+.button-primary:hover { background-color: #18bc44; }
 
 /* --- AGENDA CARD --- */
 .agenda-list { padding-left: 20px; margin: 0; color: var(--text-secondary); }
