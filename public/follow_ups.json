@@ -1,0 +1,7 @@
+{
+    "items": [
+      {"task": "Send Q3 client feedback report", "status": "Done"},
+      {"task": "Investigate CRM sales drop", "status": "Overdue"},
+      {"task": "Prepare Q4 promotion slides", "status": "Pending"}
+    ]
+  }

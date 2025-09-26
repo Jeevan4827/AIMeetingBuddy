@@ -1,38 +1,192 @@
-.App {
-  text-align: center;
+/* --- GLOBAL STYLES & COLOR PALETTE --- */
+:root {
+  --primary-color: #1a73e8;
+  --sidebar-bg: #ffffff;
+  --app-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --border-color: #dfe1e5;
+  --shadow-color: rgba(60, 64, 67, 0.15);
+
+  --status-done-bg: #e6f4ea;
+  --status-done-text: #1e8e3e;
+  --status-pending-bg: #e8f0fe;
+  --status-pending-text: #1967d2;
+  --status-overdue-bg: #fce8e6;
+  --status-overdue-text: #d93025;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--app-bg);
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 18px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
   min-height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
+}
+
+.sidebar-header {
+  margin-bottom: 2rem;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item a {
+  display: block;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-item a:hover {
+  background-color: #f1f3f4;
+}
+
+.nav-item.active a {
+  background-color: var(--status-pending-bg);
+  color: var(--primary-color);
+}
+
+
+/* --- MAIN CONTENT AREA --- */
+.main-content {
+  padding: 2rem 3rem;
+  overflow-y: auto; /* Allow content to scroll if it gets too long */
+}
+
+.app-header {
+  text-align: left; /* Aligned to the left now */
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.app-header h2 {
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 0;
+}
+
+/* --- Dashboard Grid --- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) { /* Changed breakpoint for better layout */
+  .dashboard-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Responsive Layout for Mobile --- */
+@media (max-width: 768px) {
+  .app-layout {
+      /* On smaller screens, stack sidebar on top of content */
+      grid-template-columns: 1fr;
+  }
+  .main-content {
+      padding: 1.5rem;
+  }
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+
+/* --- (The rest of the styles remain the same) --- */
+.loading-screen, .card, .card h3, .card-content, .schedule-info, .button-primary, .agenda-list, .follow-up-item, .status {
+  /* All your previous card styles are still valid and needed here */
+}
+/* ... (paste all your previous card and component styles below this line) ... */
+
+/* --- GENERIC CARD STYLES --- */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 4px 8px 0 rgba(60, 64, 67, 0.3), 0 6px 20px 0 rgba(60, 64, 67, 0.19);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card-content {
+  flex-grow: 1;
 }
+.card-content h4 { margin-top: 0; font-size: 1.1rem; color: var(--text-primary); }
+.card-content p { color: var(--text-secondary); line-height: 1.6; }
+.loading-screen { display: flex; justify-content: center; align-items: center; min-height: 50vh; font-size: 1.5rem; color: var(--text-secondary); }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* --- INSTANT SCHEDULE CARD --- */
+.schedule-info { text-align: center; display: flex; flex-direction: column; height: 100%; }
+.schedule-info p { margin-top: 0; }
+.schedule-info .time { font-size: 2.25rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0; }
+.schedule-info .date { font-size: 1.25rem; color: var(--text-secondary); flex-grow: 1; }
+.button-primary { background-color: var(--primary-color); color: white; border: none; border-radius: 8px; padding: 12px 24px; font-size: 1rem; font-weight: 500; cursor: pointer; width: 100%; margin-top: 1rem; transition: background-color 0.2s ease, transform 0.2s ease; }
+.button-primary:hover { background-color: #185abc; transform: scale(1.02); }
+
+/* --- AGENDA CARD --- */
+.agenda-list { padding-left: 20px; margin: 0; color: var(--text-secondary); }
+.agenda-list li { margin-bottom: 1rem; line-height: 1.6; }
+.agenda-list li::marker { color: var(--primary-color); font-weight: bold; }
+
+/* --- FOLLOW UP CARD --- */
+.follow-up-item { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); }
+.follow-up-item:last-child { border-bottom: none; }
+.follow-up-item .task-text { margin: 0; padding-right: 1rem; color: var(--text-secondary); }
+.status { font-weight: 500; padding: 4px 12px; border-radius: 16px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+.status.done { background-color: var(--status-done-bg); color: var(--status-done-text); }
+.status.pending { background-color: var(--status-pending-bg); color: var(--status-pending-text); }
+.status.overdue { background-color: var(--status-overdue-bg); color: var(--status-overdue-text); }
