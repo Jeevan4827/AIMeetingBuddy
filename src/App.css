@@ -1,5 +1,6 @@
 :root {
   --primary-color: #1ae862;
+  --primary-color-light: #e8fcec; 
   --sidebar-bg: #ffffff;
   --app-bg: #f8f9fa;
   --card-bg: #ffffff;
@@ -45,13 +46,16 @@ body {
 .sidebar-header h3 {
   margin: 0;
   font-size: 1.5rem;
-  color: var(--text-primary);
+  /* Updated: Using primary color for the main title for consistency */
+  color: var(--primary-color);
 }
 
 .nav-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  /* Merged Rule: Pushes the logout item to the bottom */
+  flex-grow: 1; 
 }
 
 .nav-item a {
@@ -70,31 +74,26 @@ body {
 }
 
 .nav-item a.active {
-  background-color: var(--status-pending-bg);
+  /* Updated: Using the new light primary color for better contrast */
+  background-color: var(--primary-color-light); 
   color: var(--primary-color);
 }
 
 .nav-item a svg {
   margin-right: 16px;
-  vertical-align: middle; 
+  /* Cleaned up: vertical-align is not needed due to flexbox */
 }
 
 /* MAIN CONTENT AREA */
 .main-content {
   padding: 2rem 3rem;
-  overflow-y: auto; /* Allow content to scroll if it gets too long */
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
 .app-header {
-  text-align: left; /* Aligned to the left now */
+  text-align: left;
   margin-bottom: 2rem;
-}
-
-.app-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0;
 }
 
 .app-header h2 {
@@ -110,7 +109,7 @@ body {
   gap: 1.5rem;
 }
 
-@media (min-width: 1024px) { /* Changed breakpoint for better layout */
+@media (min-width: 1024px) {
   .dashboard-grid {
       grid-template-columns: repeat(2, 1fr);
   }
@@ -119,7 +118,6 @@ body {
 /* --- Responsive Layout for Mobile --- */
 @media (max-width: 768px) {
   .app-layout {
-      /* On smaller screens, stack sidebar on top of content */
       grid-template-columns: 1fr;
   }
   .main-content {
@@ -131,13 +129,6 @@ body {
   }
 }
 
-
-/* --- (The rest of the styles remain the same) --- */
-.loading-screen, .card, .card h3, .card-content, .schedule-info, .button-primary, .agenda-list, .follow-up-item, .status {
-  /* All your previous card styles are still valid and needed here */
-}
-/* ... (paste all your previous card and component styles below this line) ... */
-
 /* --- GENERIC CARD STYLES --- */
 .card {
   background-color: var(--card-bg);
@@ -147,14 +138,11 @@ body {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 350px; 
+  /* Cleaned up: Removed unused transition property */
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 4px 8px 0 rgba(60, 64, 67, 0.3), 0 6px 20px 0 rgba(60, 64, 67, 0.19);
-}
+/* The .card:hover rule that was commented out has been fully removed */
 
 .card h3 {
   margin-top: 0;
@@ -199,56 +187,123 @@ body {
 .status.pending { background-color: var(--status-pending-bg); color: var(--status-pending-text); }
 .status.overdue { background-color: var(--status-overdue-bg); color: var(--status-overdue-text); }
 
-.scheduler-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
+/* --- Scheduler Page Styles --- */
+.scheduler-container { max-width: 600px; margin: 2rem auto; padding: 2rem; background-color: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px var(--shadow-color); }
+.scheduler-form .form-group { margin-bottom: 1.5rem; }
+.scheduler-form label { display: block; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.5rem; }
+.scheduler-form input, .scheduler-form select { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1rem; font-family: inherit; box-sizing: border-box; }
+.scheduler-form .button-primary { width: 100%; margin-top: 1rem; }
+.scheduler-form input:read-only { background-color: #f0f0f0; cursor: not-allowed; opacity: 0.8; }
+
+/* --- Login Page Styles --- */
+.login-page-background {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
   background-color: var(--card-bg);
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px var(--shadow-color);
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
 }
 
-.scheduler-form .form-group {
-  margin-bottom: 1.5rem;
-}
-
-.scheduler-form label {
-  display: block;
-  font-weight: 500;
-  color: var(--text-secondary);
+.login-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 0.5rem;
 }
 
-.scheduler-form input {
-  width: 100%;
-  padding: 12px;
+.login-logo-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.login-box h1 {
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.login-box > p {
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+.role-selection-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.role-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  box-sizing: border-box; /* Important for padding and width */
+  border-radius: 12px;
+  width: 250px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
 }
 
-.scheduler-form .button-primary {
-  width: 100%;
-  margin-top: 1rem;
+.role-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-color);
 }
 
-.scheduler-form select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  box-sizing: border-box;
-  background-color: white; /* Ensure background is white */
+.role-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
 }
 
-.scheduler-form input:read-only {
-  background-color: #f0f0f0; /* A light grey background */
-  cursor: not-allowed;
-  opacity: 0.8;
+.role-text {
+  text-align: left;
+}
+
+.role-text h2 {
+  margin: 0 0 0.25rem 0;
+  color: var(--text-primary);
+}
+
+.role-text p {
+  margin: 0;
   color: var(--text-secondary);
 }
+
+/* Responsive adjustments for login page */
+@media (max-width: 768px) {
+  .role-selection-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .login-box {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* --- Logout Button Styles --- */
+.logout-item { margin-top: auto; }
+.nav-item .logout-button { background: none; border: none; padding: 0; margin: 0; font-family: inherit; font-size: inherit; cursor: pointer; width: 100%; display: flex; align-items: center; padding: 0.8rem 1rem; border-radius: 8px; text-decoration: none; color: var(--text-secondary); font-weight: 500; transition: background-color 0.2s ease, color 0.2s ease; }
+.nav-item .logout-button:hover { background-color: #f1f3f4; }
+.nav-item .logout-button svg { margin-right: 16px; }

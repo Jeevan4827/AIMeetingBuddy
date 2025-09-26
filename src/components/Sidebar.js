@@ -1,9 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaCalendarAlt, FaCheckCircle, FaBell, FaCog } from 'react-icons/fa';
+import { FaHome, FaCalendarAlt, FaSignOutAlt, FaCheckCircle, FaBell, FaCog } from 'react-icons/fa';
+import {useAuth} from '../context/AuthContext';
 import '../App.css';
 
 const Sidebar = () => {
+  const { logout } = useAuth();
   return (
     <nav className="sidebar">
       <div className="sidebar-header">
@@ -40,6 +42,12 @@ const Sidebar = () => {
             Settings
           </a>
         </li>
+        <li className="nav-item logout-item">
+          <button className="logout-button" onClick={logout}>
+            <FaSignOutAlt />
+            Logout
+          </button>
+        </li> 
       </ul>
     </nav>
   );

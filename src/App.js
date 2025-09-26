@@ -1,62 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import Sidebar from './components/Sidebar';
+// Import pages and protected route component
+import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
-import SchedulerPage from './pages/SchedulerPage'; 
+import SchedulerPage from './pages/SchedulerPage';
+import ProtectedRoute from './components/ProtectedRoute';
+// We no longer need to fetch data here, it will be done inside HomePage
 
 function App() {
-  const [scheduleData, setScheduleData] = useState(null);
-  const [contextData, setContextData] = useState(null);
-  const [agendaData, setAgendaData] = useState(null);
-  const [followUpsData, setFollowUpsData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Data fetching remains the same
-    Promise.all([
-      fetch('/schedule.json').then(res => res.json()),
-      fetch('/context.json').then(res => res.json()),
-      fetch('/agenda.json').then(res => res.json()),
-      fetch('/follow_ups.json').then(res => res.json()),
-    ])
-    .then(([schedule, context, agenda, followUps]) => {
-      setScheduleData(schedule);
-      setContextData(context);
-      setAgendaData(agenda);
-      setFollowUpsData(followUps);
-      setLoading(false);
-    });
-  }, []);
-
   return (
-    <div className="app-layout">
-      <Sidebar />
-      <div className="main-content">
-        {loading ? (
-          <div className="loading-screen">Loading App Data...</div>
-        ) : (
-          <Routes>
-            <Route 
-              path="/" 
-              element={
-                <HomePage 
-                  scheduleData={scheduleData}
-                  contextData={contextData}
-                  agendaData={agendaData}
-                  followUpsData={followUpsData}
-                />
-              } 
-            />
-            <Route 
-              path="/scheduler" 
-              element={<SchedulerPage scheduleData={scheduleData} contextData={contextData} />} 
-            />
-          </Routes>
-        )}
-      </div>
-    </div>
+    <Routes>
+      {/* Public route for login */}
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* Protected routes for the main app */}
+      <Route element={<ProtectedRoute />}>
+        {/* These routes can only be accessed after login */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/scheduler" element={<SchedulerPage />} />
+      </Route>
+    </Routes>
   );
 }
 
