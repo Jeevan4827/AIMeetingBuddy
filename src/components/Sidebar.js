@@ -16,9 +16,29 @@ const Sidebar = () => {
             🏠&nbsp; Home
           </a>
         </li>
-        {/* You could add more menu items here in the future */}
-        {/* <li className="nav-item"><a href="#">📅&nbsp; All Meetings</a></li> */}
-        {/* <li className="nav-item"><a href="#">⚙️&nbsp; Settings</a></li> */}
+        <li className="nav-item">
+          <a href="#">
+            📅&nbsp; Scheduler
+          </a>
+        </li>
+
+        <li className="nav-item">
+          <a href="#">
+            ✅&nbsp; Follow Ups
+          </a>
+        </li>
+
+        <li className="nav-item">
+          <a href="#">
+            🔔&nbsp; Reminders
+          </a>
+        </li>
+
+        <li className="nav-item">
+          <a href="#">
+            ⚙️&nbsp; Settings
+          </a>
+        </li>
       </ul>
     </nav>
   );

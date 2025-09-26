@@ -34,13 +34,11 @@ function App() {
     });
   }, []);
 
-  // Updated JSX with the new layout
   return (
     <div className="app-layout">
       <Sidebar />
       <div className="main-content">
         <header className="app-header">
-          {/* The main title is now in the sidebar, so we can simplify this header */}
           <h2>Meeting: Zoho (Chennai) & Distributor (Germany)</h2>
         </header>
 

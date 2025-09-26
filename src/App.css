@@ -1,4 +1,3 @@
-/* --- GLOBAL STYLES & COLOR PALETTE --- */
 :root {
   --primary-color: #1a73e8;
   --sidebar-bg: #ffffff;
@@ -46,7 +45,7 @@ body {
 .sidebar-header h3 {
   margin: 0;
   font-size: 1.5rem;
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 .nav-list {
@@ -75,7 +74,7 @@ body {
 }
 
 
-/* --- MAIN CONTENT AREA --- */
+/* MAIN CONTENT AREA */
 .main-content {
   padding: 2rem 3rem;
   overflow-y: auto; /* Allow content to scroll if it gets too long */
