@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
 const SchedulerPage = () => {
-  const { user } = useAuth(); // Get the logged-in user for the header
+  const { user, addNotification } = useAuth(); // Get the logged-in user for the header
   const { state: navState } = useLocation();
 
   // --- State for Data Fetching ---
@@ -96,6 +96,7 @@ const SchedulerPage = () => {
       meetingDetails = `Title: ${title}\nDate: ${date}\nTime Slot: ${finalTimeSlot}`;
     }
     alert(`Meeting Request Sent!\n\n${meetingDetails}`);
+    addNotification(meetingDetails, user); // Send the notification
   };
 
   // Render a loading state while fetching data

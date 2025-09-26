@@ -307,3 +307,43 @@ body {
 .nav-item .logout-button { background: none; border: none; padding: 0; margin: 0; font-family: inherit; font-size: inherit; cursor: pointer; width: 100%; display: flex; align-items: center; padding: 0.8rem 1rem; border-radius: 8px; text-decoration: none; color: var(--text-secondary); font-weight: 500; transition: background-color 0.2s ease, color 0.2s ease; }
 .nav-item .logout-button:hover { background-color: #f1f3f4; }
 .nav-item .logout-button svg { margin-right: 16px; }
+
+/* --- NEW: Notification Styles --- */
+.notification-badge {
+  background-color: #d93025; /* Red for attention */
+  color: white;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-left: auto; /* Pushes the badge to the right */
+}
+
+.notifications-container {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.notification-item h4 {
+  margin: 0 0 0.5rem 0;
+}
+
+.notification-item p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9em;
+}

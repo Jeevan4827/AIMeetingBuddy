@@ -5,7 +5,11 @@ import {useAuth} from '../context/AuthContext';
 import '../App.css';
 
 const Sidebar = () => {
-  const { logout } = useAuth();
+  const { user, logout, notifications} = useAuth();
+
+   // Calculate notification count for the current user
+   const notificationCount = notifications.filter(n => n.recipient === user.type).length;
+   
   return (
     <nav className="sidebar">
       <div className="sidebar-header">
@@ -31,10 +35,15 @@ const Sidebar = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a href="#">
-            <FaBell />
-            Reminders
-          </a>
+          {/* Updated NavLink for Notifications */}
+          <NavLink to="/notifications">
+            <FaBell /> 
+            Notifications
+            {/* Badge appears if there are new notifications */}
+            {notificationCount > 0 && (
+              <span className="notification-badge">{notificationCount}</span>
+            )}
+          </NavLink>
         </li>
         <li className="nav-item">
           <a href="#">

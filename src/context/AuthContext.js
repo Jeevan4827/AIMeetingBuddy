@@ -13,6 +13,7 @@ const AuthContext = createContext(null);
 // Create the provider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
 
   const login = (userType) => {
@@ -28,7 +29,19 @@ export const AuthProvider = ({ children }) => {
     navigate('/login'); // Redirect to login page after logout
   };
 
-  const value = { user, login, logout };
+  // New function to add a notification
+  const addNotification = (details, sender) => {
+    const recipientType = sender.type === 'vendor' ? 'distributor' : 'vendor';
+    const newNotification = {
+      id: Date.now(), // Simple unique ID
+      recipient: recipientType,
+      message: `Meeting request from ${sender.name}`,
+      details: details,
+    };
+    setNotifications(prevNotifications => [...prevNotifications, newNotification]);
+  };
+
+  const value = { user, login, logout, notifications, addNotification };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
