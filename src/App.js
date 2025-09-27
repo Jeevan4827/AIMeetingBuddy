@@ -6,6 +6,8 @@ import './App.css';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import SchedulerPage from './pages/SchedulerPage';
+import MeetingsPage from './pages/MeetingsPage';
+import FollowUpsPage from './pages/FollowUpsPage';
 import NotificationsPage from './pages/NotificationsPage';
 import ProtectedRoute from './components/ProtectedRoute';
 // We no longer need to fetch data here, it will be done inside HomePage
@@ -20,7 +22,9 @@ function App() {
       <Route element={<ProtectedRoute />}>
         {/* These routes can only be accessed after login */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/meetings" element={<MeetingsPage />} />
         <Route path="/scheduler" element={<SchedulerPage />} />
+        <Route path="/follow-ups" element={<FollowUpsPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
       </Route>
     </Routes>

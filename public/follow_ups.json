@@ -1,7 +1,10 @@
 {
-    "items": [
-      {"task": "Send Q3 client feedback report", "status": "Done"},
-      {"task": "Investigate CRM sales drop", "status": "Overdue"},
-      {"task": "Prepare Q4 promotion slides", "status": "Pending"}
-    ]
-  }
+  "items": [
+    { "id": 1, "task": "Send Q3 client feedback report", "status": "Done", "date": "2025-09-26" },
+    { "id": 2, "task": "Investigate CRM sales drop", "status": "Overdue", "date": "2025-09-26" },
+    { "id": 3, "task": "Prepare Q4 promotion slides", "status": "Pending", "date": "2025-09-26" },
+    { "id": 4, "task": "Finalize budget for new marketing campaign", "date": "2025-09-15" },
+    { "id": 5, "task": "Schedule kick-off meeting for Project Titan", "date": "2025-09-26" },
+    { "id": 6, "task": "Review initial Q3 performance data", "status": "Done", "date": "2025-09-15" }
+  ]
+}

@@ -1,29 +1,39 @@
 import React from 'react';
 
 const FollowUpCard = ({ followUpsData }) => {
-  if (!followUpsData || !followUpsData.items) {
+  if (!followUpsData || !followUpsData.items || followUpsData.items.length === 0) {
     return (
       <div className="card">
         <h3>✅&nbsp; Follow up from last meet</h3>
-        <p>Loading follow-ups...</p>
+        <div className="card-content">
+          <p>No follow-ups found.</p>
+        </div>
       </div>
     );
   }
 
-  // Helper function to get the right CSS class for each status
+  const allDates = followUpsData.items.map(item => item.date);
+  const latestDate = allDates.sort().pop();
+
+  // 2. Filter the items to get only those from the latest date.
+  const latestFollowUps = followUpsData.items.filter(item => item.date === latestDate);
+
   const getStatusClass = (status) => {
-    return status.toLowerCase(); // Returns 'done', 'overdue', or 'pending'
+    return (status || 'pending').toLowerCase();
   };
 
   return (
     <div className="card">
-      <h3>✅&nbsp; Follow up from last meet</h3>
+      <h3>
+        ✅&nbsp; Follow up from last meet
+      </h3>
       <div className="card-content">
-        {followUpsData.items.map((item, index) => (
-          <div key={index} className="follow-up-item">
+        {/* 3. Map over the newly filtered 'latestFollowUps' array */}
+        {latestFollowUps.map((item, index) => (
+          <div key={item.id || index} className="follow-up-item">
             <p className="task-text">{item.task}</p>
             <span className={`status ${getStatusClass(item.status)}`}>
-              {item.status}
+              {item.status || 'Pending'}
             </span>
           </div>
         ))}

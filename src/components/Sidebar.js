@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaCalendarAlt, FaSignOutAlt, FaCheckCircle, FaBell, FaCog } from 'react-icons/fa';
+import { FaHome, FaCalendarAlt, FaSignOutAlt,  FaVideo, FaCheckCircle, FaBell  } from 'react-icons/fa';
 import {useAuth} from '../context/AuthContext';
 import '../App.css';
 
@@ -9,7 +9,7 @@ const Sidebar = () => {
 
    // Calculate notification count for the current user
    const notificationCount = notifications.filter(n => n.recipient === user.type).length;
-   
+
   return (
     <nav className="sidebar">
       <div className="sidebar-header">
@@ -29,10 +29,14 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="nav-item">
-          <a href="#">
-            <FaCheckCircle />
-            Follow Ups
-          </a>
+          <NavLink to="/meetings">
+            <FaVideo /> Meetings
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/follow-ups">
+            <FaCheckCircle /> Follow Ups
+          </NavLink>
         </li>
         <li className="nav-item">
           {/* Updated NavLink for Notifications */}
@@ -44,12 +48,6 @@ const Sidebar = () => {
               <span className="notification-badge">{notificationCount}</span>
             )}
           </NavLink>
-        </li>
-        <li className="nav-item">
-          <a href="#">
-            <FaCog />
-            Settings
-          </a>
         </li>
         <li className="nav-item logout-item">
           <button className="logout-button" onClick={logout}>
