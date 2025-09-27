@@ -443,3 +443,47 @@ body {
   color: var(--text-secondary);
   margin-top: 4px;
 }
+
+/* --- NEW: Upload Page Styles --- */
+.upload-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px var(--shadow-color);
+  text-align: center;
+}
+
+.upload-container p {
+  color: var(--text-secondary);
+  margin-top: 0;
+}
+
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.file-info {
+  margin: 1.5rem 0;
+  min-height: 2.5rem; /* Reserve space to prevent layout shift */
+}
+
+.file-info p {
+  margin: 0;
+}
+
+.error-message {
+  color: #d93025; /* Red for errors */
+  font-weight: 500;
+}
+
+/* Style for disabled primary button */
+.button-primary:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

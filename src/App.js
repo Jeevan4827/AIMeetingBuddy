@@ -9,6 +9,7 @@ import SchedulerPage from './pages/SchedulerPage';
 import MeetingsPage from './pages/MeetingsPage';
 import FollowUpsPage from './pages/FollowUpsPage';
 import NotificationsPage from './pages/NotificationsPage';
+import UploadTranscriptPage from './pages/UploadTranscriptPage';
 import ProtectedRoute from './components/ProtectedRoute';
 // We no longer need to fetch data here, it will be done inside HomePage
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/scheduler" element={<SchedulerPage />} />
         <Route path="/follow-ups" element={<FollowUpsPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/upload-transcript" element={<UploadTranscriptPage />} />
       </Route>
     </Routes>
   );

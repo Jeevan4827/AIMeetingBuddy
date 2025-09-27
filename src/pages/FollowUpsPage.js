@@ -62,11 +62,7 @@ const FollowUpsPage = () => {
   return (
     <>
       <header className="app-header">
-        {/* The user dynamic header was removed in the last file, re-adding it for consistency */}
-        <h2>
-          {user.type === 'vendor' ? `Vendor: ${user.name}` : `Distributor: ${user.name}`}
-        </h2>
-        <h3 className="page-subtitle">Action Items & Follow Ups</h3>
+        <h2 className="page-subtitle">Action Items & Follow Ups</h2>
       </header>
       <div className="follow-ups-container">
         <div className="follow-up-list">

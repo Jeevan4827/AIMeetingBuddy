@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaCalendarAlt, FaSignOutAlt,  FaVideo, FaCheckCircle, FaBell  } from 'react-icons/fa';
+import { FaHome, FaCalendarAlt, FaSignOutAlt,  FaFileUpload, FaVideo, FaCheckCircle, FaBell  } from 'react-icons/fa';
 import {useAuth} from '../context/AuthContext';
 import '../App.css';
 
@@ -47,6 +47,11 @@ const Sidebar = () => {
             {notificationCount > 0 && (
               <span className="notification-badge">{notificationCount}</span>
             )}
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/upload-transcript">
+            <FaFileUpload /> Upload Transcript
           </NavLink>
         </li>
         <li className="nav-item logout-item">
